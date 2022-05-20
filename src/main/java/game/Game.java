@@ -62,9 +62,8 @@ public class Game {
 
     public int strengthFind (String playerName){
         for (Player player : players) {
-            if (player.getName() == playerName) {
-                int strengthPlayer = player.getStrength();
-                return strengthPlayer;
+            if (player.getName().equals(playerName)) {
+                return player.getStrength();
             }
         }
         return 0;

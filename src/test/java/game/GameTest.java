@@ -3,11 +3,32 @@ package game;
 import exeption.NotRegisteredException;
 import org.junit.jupiter.api.Test;
 import players.Player;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
 
     Game game = new Game();
+
+    @Test
+    void shouldFindEmptyGameWithoutPlayers() {
+
+        assertThrows(NotRegisteredException.class, () ->  {
+            game.round("Евген", "Димон");
+        });
+    }
+
+    @Test
+    void shouldFindAddOnePlayerInGame() {
+
+        Player player1 = new Player(1, "Евген", 100);
+
+        game.register(player1);
+
+        assertThrows(NotRegisteredException.class, () ->  {
+            game.round("Евген", null);
+        });
+    }
 
     @Test
     void shouldFindMoreStrengthPlayer2() {
