@@ -2,37 +2,36 @@ package game;
 
 import exeption.NotRegisteredException;
 import players.Player;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
 
-    private Collection<Player> players = new ArrayList<>();
+    public Map<String,Player> players = new HashMap<>();
 
     //конструкторы
 
     public Game() {
     }
 
-    public Game(Collection<Player> players) {
+    public Game(Map<String, Player> players) {
         this.players = players;
     }
 
     //геттеры и сеттеры
 
-
-    public Collection<Player> getPlayers() {
+    public Map<String, Player> getPlayers() {
         return players;
     }
 
-    public void setPlayers(Collection<Player> players) {
+    public void setPlayers(Map<String, Player> players) {
         this.players = players;
     }
 
     // решистрация игроков
 
     public void register(Player player) {
-        players.add(player);
+        players.put(player.getName(), player);
     }
 
     //соревнование между двумя игроками
@@ -61,11 +60,10 @@ public class Game {
     //определение силы по имени игрока
 
     public int strengthFind (String playerName){
-        for (Player player : players) {
+        for(Player player : players.values())
             if (player.getName().equals(playerName)) {
                 return player.getStrength();
             }
-        }
         return 0;
     }
 }
